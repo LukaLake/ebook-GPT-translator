@@ -135,13 +135,13 @@ openai.api_key = openai_apikey
 import argparse
 
 # 创建参数解析器
-parser = argparse.ArgumentParser()
-parser.add_argument("filename", help="Name of the input file")
-parser.add_argument("--test", help="Only translate the first 3 short texts", action="store_true")
-args = parser.parse_args()
+# parser = argparse.ArgumentParser()
+# parser.add_argument("filename", default='1.pdf', help="Name of the input file")
+# parser.add_argument("--test",  default=False, help="Only translate the first 3 short texts", action="store_true")
+# args = parser.parse_args()
 
 # 获取命令行参数
-filename = args.filename
+filename = '1.pdf'
 base_filename, file_extension = os.path.splitext(filename)
 new_filename = base_filename + "_translated.epub"
 new_filenametxt = base_filename + "_translated.txt"
@@ -394,8 +394,8 @@ if filename.endswith('.epub'):
 
             # 将文本分成不大于1024字符的短文本list
             short_text_list = split_text(text)
-            if args.test:
-                short_text_list = short_text_list[:3]
+            # if args.test:
+            #     short_text_list = short_text_list[:3]
 
             # 初始化翻译后的文本
             translated_text = ""
@@ -419,8 +419,8 @@ if filename.endswith('.epub'):
             # 使用翻译后的文本替换原有的章节内容
             item.set_content((img_html+translated_text).encode('utf-8'))
             translated_all +=translated_text
-            if args.test and count >= 3:
-                break
+            # if args.test and count >= 3:
+            #     break
 
     # 将epub书籍写入文件
     epub.write_epub(new_filename, book, {})
@@ -441,8 +441,8 @@ else:
 
     # 将文本分成不大于1024字符的短文本list
     short_text_list = split_text(text)
-    if args.test:
-        short_text_list = short_text_list[:3]
+    # if args.test:
+    #     short_text_list = short_text_list[:3]
     # 初始化翻译后的文本
     translated_text = ""
 
